@@ -1,0 +1,327 @@
+body {
+    background-color: rgba(253, 246, 229);
+    font-family: "DynaPuff", system-ui;
+    padding: 30px;
+}
+
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo-group {
+    display: flex;
+    align-items: center;
+    /* this is the key property */
+    gap: 8px;
+    font-size: 30px;
+
+}
+
+header {
+    margin-bottom: 50px;
+}
+
+.nav-links {
+    margin-left: -100px;
+}
+
+.nav-links ul {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.location {
+    display: flex;
+    align-items: center;
+    /* this is the key property */
+    gap: 8px;
+}
+
+.profile-picture {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.first-box {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    background-image: url(./assets/scenery1.jpg);
+    opacity: 0.9;
+    background-size: cover;
+    /* fills the box without stretching */
+    background-position: center;
+    /* centers the image within the box */
+    background-repeat: no-repeat;
+    /* prevents tiling */
+    border-radius: 20px;
+    border-style: solid;
+    border-width: 1px;
+    border-color: black;
+}
+
+.temperature-detail {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.content {
+    margin-left: 90px;
+    margin-top: 140px;
+    padding: 0px;
+    display: grid;
+    gap: 20px;
+    background-color: white;
+    backdrop-filter: blur(10px);
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: 12px;
+    padding: 20px;
+}
+
+.detail {
+    display: inline-flex;
+    flex-direction: column;
+}
+
+.highlight {
+    border-radius: 10px;
+}
+
+.highlight1 {
+    font-size: 20px;
+}
+
+.highlight2 {
+    font-size: 40px;
+}
+
+.highlight3 {
+    font-size: 55px;
+}
+
+.calendar {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.sun {
+    color: #f2b575;
+    font-size: 30px;
+}
+
+.four-boxes {
+    display: grid;
+    grid-template-columns: 900px 500px;
+    grid-template-rows: 2fr 1fr;
+    min-height: 100vh;
+    gap: 20px;
+}
+
+.weather-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    justify-content: center;
+    backdrop-filter: blur(1px);
+}
+
+.temp-detail {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    border-right: 1px solid rgba(0, 0, 0, 0.2);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+    padding: 20px;
+}
+
+.temp-detail1 {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.humidity {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 15px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+    padding: 20px;
+}
+
+.humidity1 {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.wind {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 15px;
+    border-right: 1px solid rgba(0, 0, 0, 0.2);
+    padding: 20px;
+}
+
+.wind1 {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.pressure {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 15px;
+    padding: 20px;
+}
+
+.pressure1 {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.second-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    border-radius: 20px;
+    border-style: solid;
+    border-width: 1px;
+    border-color: black;
+    padding: 20px;
+    position: relative;
+    overflow: hidden;
+
+}
+
+.cherry-blossom {
+    position: absolute;
+    top: -20px;
+    /* small positive offset — stays INSIDE the box, not overlapping border */
+    left: -300px;
+    width: 800px;
+    height: 1000px;
+    background-image: url(./assets/cherrytree.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    z-index: 0;
+    /* sits above the box background, but... */
+    pointer-events: none;
+    opacity: 0.7;
+}
+
+.second-box>span,
+.weather-grid {
+    position: relative;
+    z-index: 1;
+}
+
+.hourly-cards {
+    display: flex;
+    margin-top: 20px;
+    margin-bottom: 20px;
+
+}
+
+.icon {
+    width: 40px;
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-right: 1px solid black;
+    border-right: 1px solid rgba(0, 0, 0, 0.2);
+    padding: 23px;
+    gap: 15px;
+    font-size: 16px;
+}
+
+.third-box {
+    border: 1px solid black;
+    padding: 15px;
+    border-radius: 20px
+}
+
+.last-card {
+    border: none;
+}
+
+.daily-cards {
+    display: flex;
+    flex-direction: column;
+   align-items: center;
+    /* centers vertically on the same axis */
+    justify-content: center;
+    /* centers the group horizontally */
+    /* spacing between day / icon / temp */
+
+    
+    margin-top: 10px;
+    gap: 606px;
+
+    /* force single line, no dropping down */
+}
+
+.daily-card {
+
+    width: 300px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    /* centers vertically on the same axis */
+    
+    /* centers the group horizontally */
+    /* spacing between day / icon / temp */
+justify-content: space-evenly;
+
+    gap: 70px;
+
+    /* force single line, no dropping down */
+    border-bottom: 1px solid black;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+
+
+}
+
+.daily-card img {
+    width: 45px;
+    display: block;
+    transform: translateY(8px);
+    /* adjust value to taste */
+}
+
+.fourth-box {
+    border: 1px solid black;
+    padding: 15px;
+    border-radius: 20px;
+  
+}
+
+.daily-card:last-child {
+    border-bottom: none;
+}
+
+.today {
+    border: 2px solid #e4c999;
+    border-radius: 10px;
+    padding: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+}
