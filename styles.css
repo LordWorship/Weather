@@ -2,6 +2,7 @@ body {
     background-color: rgba(253, 246, 229);
     font-family: "DynaPuff", system-ui;
     padding: 30px;
+    position: relative;
 }
 
 header {
@@ -267,13 +268,13 @@ header {
 .daily-cards {
     display: flex;
     flex-direction: column;
-   align-items: center;
+    align-items: center;
     /* centers vertically on the same axis */
     justify-content: center;
     /* centers the group horizontally */
     /* spacing between day / icon / temp */
 
-    
+
     margin-top: 10px;
     gap: 606px;
 
@@ -287,10 +288,10 @@ header {
     flex-direction: row;
     align-items: center;
     /* centers vertically on the same axis */
-    
+
     /* centers the group horizontally */
     /* spacing between day / icon / temp */
-justify-content: space-evenly;
+    justify-content: space-evenly;
 
     gap: 70px;
 
@@ -312,16 +313,75 @@ justify-content: space-evenly;
     border: 1px solid black;
     padding: 15px;
     border-radius: 20px;
-  
+
 }
 
 .daily-card:last-child {
     border-bottom: none;
 }
 
+
+
+
 .today {
     border: 2px solid #e4c999;
     border-radius: 10px;
     padding: 10px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+    position: relative;
 }
+
+.today::after {
+    content: "";
+    width: 6px;
+    height: 6px;
+    background-color: #b78e47;
+    border-radius: 50%;
+    position: absolute;
+    bottom: -1px;
+    /* half the dot's height, so it straddles the border */
+    left: 50%;
+    transform: translateX(-50%);
+    /* centers it horizontally regardless of box width */
+
+}
+
+.today:hover {
+    cursor: pointer;
+}
+
+
+.today:active {
+    box-shadow: 0 2px 4px rgba(247, 232, 207, 0.5);
+    transform: translateY(1px);
+}
+
+footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 40px;
+}
+
+
+
+.lucide {
+    width: 40px;
+    display: flex;
+    color: rgb(206, 162, 17);
+}
+
+
+.lucide-sun-moon {
+
+    width: 35px;
+    height: 35px;
+    display: flex;
+    color:  #536892;
+    background: rgba(212, 220, 133, 0.6);
+    border-radius: 12px;
+    padding: 6px;
+    cursor: pointer;
+    box-shadow: 0 4px 14px rgba(242, 181, 117, 0.2);
+}
+
