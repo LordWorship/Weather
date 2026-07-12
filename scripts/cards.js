@@ -35,7 +35,7 @@ hourlyData.forEach(data => {
     `
     }
 });
-
+            
 document.querySelector('.js-hourly-cards').innerHTML = weatherData;
 
 
@@ -59,3 +59,10 @@ dailyData.forEach(daily => {
 });
 
 document.querySelector('.js-daily-card').innerHTML = dailyForecast;
+
+
+const themeIcon = document.querySelector('.theme-toggle');
+
+themeIcon.addEventListener('click', () => {
+    document.body.classList.toggle('change-theme');
+});

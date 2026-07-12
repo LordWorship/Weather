@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>MyWeather</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -27,7 +27,7 @@
                 <path d="M13 22H7a5 5 0 1 1 4.9-6H13a3 3 0 0 1 0 6Z" />
             </svg>
 
-            <span>Weather</span>
+            <span>MyWeather</span>
         </div>
 
         <nav class="nav-links">
@@ -42,34 +42,47 @@
         </nav>
 
         <div class="location">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
-                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                class="lucide lucide-navigation-icon lucide-navigation">
-                <polygon points="3 11 22 2 13 21 11 13 3 11" />
-            </svg>
+            <div class="location">
+    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+        class="lucide lucide-navigation-icon lucide-navigation">
+        <polygon points="3 11 22 2 13 21 11 13 3 11" />
+    </svg>
 
-            <span>Tokyo, Japan</span>
+    <span>Tokyo, Japan</span>
 
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                class="lucide lucide-chevron-down-icon lucide-chevron-down">
-                <path d="m6 9 6 6 6-6" />
-            </svg>
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+        class="lucide lucide-chevron-down-icon lucide-chevron-down">
+        <path d="m6 9 6 6 6-6" />
+    </svg>
 
-            <img src="./assets/profile.jpg" alt="user-profile-picture" class="profile-picture">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="34" height="34" viewBox="0 0 24 24" fill="none"
+    <img src="./assets/profile.jpg" alt="user-profile-picture" class="profile-picture">
+
+    <span class="theme-toggle">
+        <!-- Sun icon: visible in light mode -->
+        <svg xmlns="http://www.w3.org/2000/svg" width="34" height="34" viewBox="0 0 24 24" fill="none"
             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-            class="lucide lucide-sun-moon-icon lucide-sun-moon">
+            class="lucide lucide-sun theme-icon-sun">
+            <circle cx="12" cy="12" r="4" />
             <path d="M12 2v2" />
             <path d="M12 20v2" />
-            <path d="m4.9 4.9 1.4 1.4" />
-            <path d="m17.7 17.7 1.4 1.4" />
+            <path d="m4.93 4.93 1.41 1.41" />
+            <path d="m17.66 17.66 1.41 1.41" />
             <path d="M2 12h2" />
             <path d="M20 12h2" />
-            <path d="m6.3 17.7-1.4 1.4" />
-            <path d="m19.1 4.9-1.4 1.4" />
-            <circle cx="12" cy="12" r="4" />
+            <path d="m6.34 17.66-1.41 1.41" />
+            <path d="m19.07 4.93-1.41 1.41" />
         </svg>
+
+        <!-- Moon icon: visible in dark mode -->
+        <svg xmlns="http://www.w3.org/2000/svg" width="34" height="34" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+            class="lucide lucide-moon theme-icon-moon">
+            <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z" />
+        </svg>
+    </span>
+</div>
         </div>
     </header>
 
