@@ -1,17 +1,13 @@
-/* =========================================================================
-   MyWeather — functional weather app
-   Data source: Open-Meteo (https://open-meteo.com) — free, no API key needed
-   ========================================================================= */
+
 
 const ICON_BASE = "https://raw.githubusercontent.com/Makin-Things/weather-icons/master/animated";
 
-// Default location shown before geolocation / search resolves anything
+
 const DEFAULT_LOCATION = { name: "Tokyo, Japan", lat: 35.6762, lon: 139.6503, tz: "Asia/Tokyo" };
 
 let currentLocation = { ...DEFAULT_LOCATION };
 
-/* ---------------------------- WMO weather code mapping ---------------------------- */
-// https://open-meteo.com/en/docs — weathercode reference
+
 function weatherCodeInfo(code, isDay) {
     const day = isDay ? "day" : "night";
     const table = {
@@ -56,7 +52,6 @@ function windDirection(deg) {
     return dirs[Math.round(deg / 45) % 8];
 }
 
-/* ---------------------------- Rendering ---------------------------- */
 
 function renderHero(current, code) {
     const info = weatherCodeInfo(code, current.is_day === 1);
@@ -82,7 +77,7 @@ function renderDateTime() {
         minute: "2-digit",
         hour12: true,
     });
-    // "Tuesday, 14, July, 10:30 AM" -> reformat to "Tuesday, 14 July - 10:30 AM"
+
     const parts = now.split(", ");
     const formatted = parts.length === 4
         ? `${parts[0]}, ${parts[1]} ${parts[2]} - ${parts[3]}`
@@ -150,14 +145,13 @@ function renderDaily(daily) {
         </div>`;
     }
 
-    // .js-daily-card is an (empty) wrapper div inside .daily-cards in the markup;
-    // render into the parent container so cards lay out correctly.
+
     const wrapper = document.querySelector(".js-daily-card");
     const container = wrapper ? wrapper.parentElement : document.querySelector(".daily-cards");
     container.innerHTML = html;
 }
 
-/* ---------------------------- Data fetching ---------------------------- */
+
 
 async function fetchWeather(lat, lon) {
     const url = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}` +
@@ -194,7 +188,7 @@ async function searchCity(query) {
     return { name, lat: r.latitude, lon: r.longitude, tz: r.timezone };
 }
 
-/* ---------------------------- App bootstrap ---------------------------- */
+
 
 async function loadWeather() {
     try {
@@ -218,7 +212,7 @@ function useLocation(loc) {
 }
 
 function init() {
-    // Try geolocation first; fall back to the default city on denial/error.
+
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(
             async (pos) => {
@@ -235,10 +229,9 @@ function init() {
         loadWeather();
     }
 
-    // Keep the clock/date fresh even between full weather refreshes.
     setInterval(renderDateTime, 30000);
 
-    // Theme toggle
+
     const themeIcon = document.querySelector(".theme-toggle");
     if (localStorage.getItem("myweather-theme") === "dark") {
         document.body.classList.add("change-theme");
@@ -248,7 +241,7 @@ function init() {
         localStorage.setItem("myweather-theme", document.body.classList.contains("change-theme") ? "dark" : "light");
     });
 
-    // Location search (click the chevron next to the location name)
+  
     const searchTrigger = document.getElementById("location-search-trigger");
     if (searchTrigger) {
         searchTrigger.addEventListener("click", async () => {
@@ -267,13 +260,13 @@ function init() {
         });
     }
 
-    // Manual refresh button in the footer
+  
     const refreshBtn = document.getElementById("refresh-btn");
     if (refreshBtn) {
         refreshBtn.addEventListener("click", loadWeather);
     }
 
-    // Nav tab switching: highlight the active tab and scroll to its section
+
     const tabs = document.querySelectorAll(".nav-links li[data-tab]");
     const sectionMap = {
         today: "section-today",
