@@ -5,19 +5,127 @@ body {
     position: relative;
 }
 
+body.change-theme {
+    background-color: black;
+    color: rgba(253, 246, 229);
+}
+
+body.change-theme .second-box,
+body.change-theme .third-box,
+body.change-theme .fourth-box {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.35);
+}
+
+body.change-theme .second-box .weather-grid {
+    backdrop-filter: none !important;
+}
+
+body.change-theme .second-box .weather-grid > div {
+    background: transparent !important;
+    backdrop-filter: none !important;
+}
+
+body.change-theme .temp-detail,
+body.change-theme .humidity,
+body.change-theme .wind,
+body.change-theme .pressure,
+body.change-theme .card,
+body.change-theme .daily-card {
+    border-color: rgba(253, 246, 229, 0.2) !important;
+}
+
+
+.theme-toggle {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 35px;
+    height: 35px;
+    border-radius: 12px;
+    cursor: pointer;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+.theme-toggle .theme-icon-sun,
+.theme-toggle .theme-icon-moon {
+    position: absolute;
+    display: block;
+    padding: 6px;
+    transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+
+.theme-toggle .theme-icon-sun {
+    color: #b78e47;
+    opacity: 1;
+    transform: rotate(0deg) scale(1);
+}
+
+.theme-toggle .theme-icon-moon {
+    color: #cdd6f4;
+    opacity: 0;
+    transform: rotate(90deg) scale(0.5);
+    pointer-events: none;
+}
+
+/* Dark mode: moon visible, sun hidden */
+body.change-theme .theme-toggle .theme-icon-sun {
+    opacity: 0;
+    transform: rotate(-90deg) scale(0.5);
+    pointer-events: none;
+}
+
+body.change-theme .theme-toggle .theme-icon-moon {
+    opacity: 1;
+    transform: rotate(0deg) scale(1);
+    pointer-events: none;
+}
+
+
+body,
+.first-box,
+.first-box .content,
+.second-box,
+.third-box,
+.fourth-box,
+.second-box .weather-grid > div,
+.temp-detail,
+.humidity,
+.wind,
+.pressure,
+.card,
+.daily-card {
+    transition: background-color 0.4s ease,
+                background 0.4s ease,
+                border-color 0.4s ease,
+                color 0.4s ease,
+                box-shadow 0.4s ease;
+}
+
+* {
+    box-sizing: border-box;
+}
+
 header {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 16px;
 }
 
 .logo-group {
     display: flex;
     align-items: center;
-    /* this is the key property */
     gap: 8px;
     font-size: 30px;
-
+    flex-shrink: 0;
 }
 
 header {
@@ -25,7 +133,15 @@ header {
 }
 
 .nav-links {
-    margin-left: -100px;
+    margin-left: 0;
+    flex: 1 1 auto;
+    min-width: 0;
+    overflow-x: auto;
+    scrollbar-width: none;
+}
+
+.nav-links::-webkit-scrollbar {
+    display: none;
 }
 
 .nav-links ul {
@@ -36,13 +152,14 @@ header {
     list-style: none;
     margin: 0;
     padding: 0;
+    white-space: nowrap;
 }
 
 .location {
     display: flex;
     align-items: center;
-    /* this is the key property */
     gap: 8px;
+    flex-wrap: wrap;
 }
 
 .profile-picture {
@@ -50,6 +167,7 @@ header {
     height: 42px;
     border-radius: 50%;
     object-fit: cover;
+    flex-shrink: 0;
 }
 
 .first-box {
@@ -59,21 +177,20 @@ header {
     background-image: url(./assets/scenery1.jpg);
     opacity: 0.9;
     background-size: cover;
-    /* fills the box without stretching */
     background-position: center;
-    /* centers the image within the box */
     background-repeat: no-repeat;
-    /* prevents tiling */
     border-radius: 20px;
     border-style: solid;
     border-width: 1px;
     border-color: black;
+    min-height: 320px;
 }
 
 .temperature-detail {
     display: flex;
     align-items: center;
     gap: 20px;
+    flex-wrap: wrap;
 }
 
 .content {
@@ -87,6 +204,7 @@ header {
     background: rgba(255, 255, 255, 0.5);
     border-radius: 12px;
     padding: 20px;
+    max-width: 100%;
 }
 
 .detail {
@@ -114,6 +232,7 @@ header {
     display: flex;
     align-items: center;
     gap: 10px;
+    flex-wrap: wrap;
 }
 
 .sun {
@@ -123,7 +242,7 @@ header {
 
 .four-boxes {
     display: grid;
-    grid-template-columns: 900px 500px;
+    grid-template-columns: minmax(0, 1.8fr) minmax(0, 1fr);
     grid-template-rows: 2fr 1fr;
     min-height: 100vh;
     gap: 20px;
@@ -207,13 +326,11 @@ header {
     padding: 20px;
     position: relative;
     overflow: hidden;
-
 }
 
 .cherry-blossom {
     position: absolute;
     top: -20px;
-    /* small positive offset — stays INSIDE the box, not overlapping border */
     left: -300px;
     width: 800px;
     height: 1000px;
@@ -221,7 +338,6 @@ header {
     background-size: contain;
     background-repeat: no-repeat;
     z-index: 0;
-    /* sits above the box background, but... */
     pointer-events: none;
     opacity: 0.7;
 }
@@ -236,11 +352,13 @@ header {
     display: flex;
     margin-top: 20px;
     margin-bottom: 20px;
-
+    overflow-x: auto;
+    gap: 4px;
+    -webkit-overflow-scrolling: touch;
 }
 
 .icon {
-    width: 40px;
+    width: 40px
 }
 
 .card {
@@ -248,17 +366,18 @@ header {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    border-right: 1px solid black;
     border-right: 1px solid rgba(0, 0, 0, 0.2);
     padding: 23px;
     gap: 15px;
     font-size: 16px;
+    flex: 0 0 auto;
 }
 
 .third-box {
     border: 1px solid black;
     padding: 15px;
-    border-radius: 20px
+    border-radius: 20px;
+    min-width: 0;
 }
 
 .last-card {
@@ -268,60 +387,41 @@ header {
 .daily-cards {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    /* centers vertically on the same axis */
-    justify-content: center;
-    /* centers the group horizontally */
-    /* spacing between day / icon / temp */
-
-
+    align-items: stretch;
+    justify-content: flex-start;
     margin-top: 10px;
-    gap: 606px;
-
-    /* force single line, no dropping down */
+    gap: 12px;
 }
 
 .daily-card {
-
-    width: 300px;
+    width: 100%;
+    max-width: 300px;
+    margin: 0 auto;
     display: flex;
     flex-direction: row;
     align-items: center;
-    /* centers vertically on the same axis */
-
-    /* centers the group horizontally */
-    /* spacing between day / icon / temp */
     justify-content: space-evenly;
-
     gap: 70px;
-
-    /* force single line, no dropping down */
-    border-bottom: 1px solid black;
     border-bottom: 1px solid rgba(0, 0, 0, 0.2);
-
-
+    padding-bottom: 12px;
 }
 
 .daily-card img {
     width: 45px;
     display: block;
     transform: translateY(8px);
-    /* adjust value to taste */
 }
 
 .fourth-box {
     border: 1px solid black;
     padding: 15px;
     border-radius: 20px;
-
+    min-width: 0;
 }
 
 .daily-card:last-child {
     border-bottom: none;
 }
-
-
-
 
 .today {
     border: 2px solid #e4c999;
@@ -339,17 +439,13 @@ header {
     border-radius: 50%;
     position: absolute;
     bottom: -1px;
-    /* half the dot's height, so it straddles the border */
     left: 50%;
     transform: translateX(-50%);
-    /* centers it horizontally regardless of box width */
-
 }
 
 .today:hover {
     cursor: pointer;
 }
-
 
 .today:active {
     box-shadow: 0 2px 4px rgba(247, 232, 207, 0.5);
@@ -363,25 +459,185 @@ footer {
     margin-top: 40px;
 }
 
-
-
 .lucide {
     width: 40px;
     display: flex;
     color: rgb(206, 162, 17);
 }
 
+/* ==========================================================================
+   Responsive breakpoints
+   ========================================================================== */
 
-.lucide-sun-moon {
+/* Large tablets / small laptops */
+@media (max-width: 1100px) {
+    .four-boxes {
+        grid-template-columns: minmax(0, 1fr);
+        grid-template-rows: auto;
+        min-height: auto;
+    }
 
-    width: 35px;
-    height: 35px;
-    display: flex;
-    color:  #536892;
-    background: rgba(212, 220, 133, 0.6);
-    border-radius: 12px;
-    padding: 6px;
-    cursor: pointer;
-    box-shadow: 0 4px 14px rgba(242, 181, 117, 0.2);
+    .content {
+        margin-left: 40px;
+        margin-top: 60px;
+    }
+
+    .first-box {
+        min-height: 280px;
+    }
 }
 
+/* Tablets */
+@media (max-width: 768px) {
+    body {
+        padding: 20px;
+    }
+
+    header {
+        margin-bottom: 30px;
+    }
+
+    .nav-links {
+        order: 3;
+        flex-basis: 100%;
+        margin-left: 0;
+    }
+
+    .nav-links ul {
+        justify-content: flex-start;
+        gap: 20px;
+    }
+
+    .location {
+        gap: 6px;
+    }
+
+    .location span {
+        font-size: 14px;
+    }
+
+    .content {
+        margin-left: 20px;
+        margin-top: 30px;
+    }
+
+    .highlight3 {
+        font-size: 42px;
+    }
+
+    .highlight2 {
+        font-size: 30px;
+    }
+
+    .weather-grid {
+        grid-template-columns: 1fr;
+        grid-template-rows: none;
+    }
+
+    .temp-detail,
+    .wind {
+        border-right: none;
+    }
+
+    .temp-detail,
+    .humidity,
+    .wind {
+        border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+    }
+
+    .cherry-blossom {
+        width: 500px;
+        height: 620px;
+        left: -220px;
+        opacity: 0.5;
+    }
+
+    .card {
+        padding: 16px;
+        font-size: 14px;
+    }
+}
+
+/* Phones */
+@media (max-width: 480px) {
+    body {
+        padding: 14px;
+    }
+
+    .logo-group {
+        font-size: 22px;
+    }
+
+    .logo-group svg {
+        width: 32px;
+        height: 32px;
+    }
+
+    header {
+        gap: 10px;
+    }
+
+    .location span {
+        display: none;
+    }
+
+   .lucide-navigation {
+    display: none;
+   }
+
+    .location .profile-picture,
+    .location .theme-toggle {
+        display: flex;
+    }
+
+    .content {
+        margin-left: 0;
+        margin-top: 20px;
+        padding: 16px;
+    }
+
+    .highlight3 {
+        font-size: 34px;
+    }
+
+    .highlight2 {
+        font-size: 24px;
+    }
+
+    .highlight1 {
+        font-size: 16px;
+    }
+
+    .temperature-detail {
+        gap: 12px;
+    }
+
+    .calendar span {
+        font-size: 14px;
+    }
+
+    .cherry-blossom {
+        display: none;
+    }
+
+    .weather-grid span {
+        font-size: 14px;
+    }
+
+    .temp-detail1 span:nth-child(2),
+    .humidity1 span:nth-child(2),
+    .wind1 span:nth-child(2),
+    .pressure1 span:nth-child(2) {
+        font-size: 26px !important;
+    }
+
+    .third-box,
+    .fourth-box {
+        padding: 12px;
+    }
+
+    .daily-card {
+        gap: 30px;
+        max-width: 100%;
+    }
+}

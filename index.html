@@ -32,12 +32,10 @@
 
         <nav class="nav-links">
             <ul>
-                <li class="today">Today
-
-                </li>
-                <li>Hourly</li>
-                <li>5-Day Forecast</li>
-                <li>About</li>
+                <li class="today" data-tab="today">Today</li>
+                <li data-tab="hourly">Hourly</li>
+                <li data-tab="daily">5-Day Forecast</li>
+                <li data-tab="about">About</li>
             </ul>
         </nav>
 
@@ -49,11 +47,11 @@
         <polygon points="3 11 22 2 13 21 11 13 3 11" />
     </svg>
 
-    <span>Tokyo, Japan</span>
+    <span id="header-location-name">Tokyo, Japan</span>
 
     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
         stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-        class="lucide lucide-chevron-down-icon lucide-chevron-down">
+        class="lucide lucide-chevron-down-icon lucide-chevron-down" id="location-search-trigger" style="cursor:pointer;">
         <path d="m6 9 6 6 6-6" />
     </svg>
 
@@ -88,20 +86,20 @@
 
     <main class="four-boxes">
 
-        <div class="first-box">
+        <div class="first-box" id="section-today">
             <div class="content">
                 <div>
-                    <span class="highlight highlight1">Good Morning! <span class="sun"> &#x2600;</span></span>
+                    <span class="highlight highlight1"><span id="greeting">Good Morning!</span> <span class="sun" id="hero-emoji">&#x2600;</span></span>
 
                 </div>
                 <div>
-                    <span class="highlight highlight2">Tokyo, Japan</span>
+                    <span class="highlight highlight2" id="hero-location">Tokyo, Japan</span>
                 </div>
                 <div class="temperature-detail">
-                    <span class="highlight highlight3">26 &deg;c</span>
+                    <span class="highlight highlight3" id="hero-temp">26 &deg;c</span>
                     <div class="detail">
-                        <span class="highlight">Partly Cloudy</span>
-                        <span class="highlight">Feels like 27 &deg;</span>
+                        <span class="highlight" id="hero-condition">Partly Cloudy</span>
+                        <span class="highlight" id="hero-feelslike">Feels like 27 &deg;</span>
                     </div>
                 </div>
                 <div class="calendar">
@@ -119,7 +117,7 @@
                         <path d="M12 18h.01" />
                         <path d="M16 18h.01" />
                     </svg>
-                    <span class="highlight">Tuesday, 7 July - 10:30 AM</span>
+                    <span class="highlight" id="hero-datetime">Tuesday, 7 July - 10:30 AM</span>
                 </div>
             </div>
         </div>
@@ -137,8 +135,8 @@
                     </svg>
                     <div class="temp-detail1">
                         <span>Temperature</span>
-                        <span style="font-size: 35px;">26 &deg;c</span>
-                        <span>&uarr; 28&deg; / &darr; 17&deg;</span>
+                        <span style="font-size: 35px;" id="detail-temp">26 &deg;c</span>
+                        <span id="detail-temp-range">&uarr; 28&deg; / &darr; 17&deg;</span>
                     </div>
                 </div>
                 <div class="humidity">
@@ -149,7 +147,7 @@
                     </svg>
                     <div class="humidity1">
                         <span>Humidity</span>
-                        <span style="font-size: 35px;">58%</span>
+                        <span style="font-size: 35px;" id="detail-humidity">58%</span>
                     </div>
 
                 </div>
@@ -161,8 +159,8 @@
                     </svg>
                     <div class="wind1">
                         <span>Wind</span>
-                        <span style="font-size: 35px;">14 km/h</span>
-                        <span>North East</span>
+                        <span style="font-size: 35px;" id="detail-wind-speed">14 km/h</span>
+                        <span id="detail-wind-dir">North East</span>
                     </div>
 
                 </div>
@@ -176,20 +174,20 @@
                     </svg>
                     <div class="pressure1">
                         <span>Pressure</span>
-                        <span style="font-size: 35px;">1014 hPa</span>
+                        <span style="font-size: 35px;" id="detail-pressure">1014 hPa</span>
                     </div>
                 </div>
             </div>
         </div>
 
-        <div class="third-box">
+        <div class="third-box" id="section-hourly">
             <span style="font-size: 25px; padding-left: 20px; font-weight: 700;">Hourly Forecast</span>
 
             <div class="hourly-cards js-hourly-cards"> </div>
 
         </div>
 
-        <div class="fourth-box">
+        <div class="fourth-box" id="section-daily">
             <span style=" font-size: 25px; font-weight: 700;">5-Day Forecast</span>
 
             <div class="daily-cards">
@@ -201,7 +199,7 @@
     </main>
 
     <footer>
-        <span>Last Updated : &nbsp;10:30 &#x27F3;</span>
+        <span>Last Updated : &nbsp;<span id="last-updated">10:30</span> <span id="refresh-btn" style="cursor:pointer;" title="Refresh weather">&#x27F3;</span></span>
     </footer>
     <script src="./scripts/cards.js"></script>
 
