@@ -55,7 +55,13 @@ function windDirection(deg) {
 
 function renderHero(current, code) {
     const info = weatherCodeInfo(code, current.is_day === 1);
-    const hour = new Date().getHours();
+
+    const hourStr = new Date().toLocaleString("en-US", {
+        timeZone: currentLocation.tz,
+        hour: "numeric",
+        hour12: false,
+    });
+    const hour = parseInt(hourStr, 10);
     const greeting = hour < 12 ? "Good Morning!" : hour < 18 ? "Good Afternoon!" : "Good Evening!";
 
     document.getElementById("greeting").textContent = greeting;
